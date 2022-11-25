@@ -66,7 +66,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, 814);
+  let canvas= createCanvas(1100, 814);
+  canvas.parent('canvasContainer');
   textStyle(BOLD);
   Bomb = new bomb();
   Rick = new Grandpa();
