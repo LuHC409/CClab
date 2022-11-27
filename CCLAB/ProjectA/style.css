@@ -4,14 +4,17 @@ html {
 }
 
 body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+  background-image: url('assets/1.jpg') ;
+    background-color: aquamarine;
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: larger;
     color:red;
-    background-color: rgb(186, 128, 239);
-    margin: 0;
-    padding: 0;
     
-    background-size: cover;
+    margin: 0;
+    padding: 0; */
+    
+    
 
 
   }
@@ -32,10 +35,8 @@ body {
 
 #canvasContainer{
   position: inherit;
-  
   display: flex;
   justify-content: center;
-
 }
 
 
@@ -46,16 +47,27 @@ h1{
   font-family: 'Times New Roman', Times, serif;
   font-weight: 1000;
   background-size: cover;
-  text-shadow: 1.5px 1.5px;
-
+  text-shadow: 0 0 5px #FF0000, 0 0 5px #6bf403; 
+  border: medium solid red;
+  background-color: aliceblue;
+  border-radius: 2%;
+  letter-spacing:8px;
+  text-indent: 6px;
 }
 
 p{
   text-shadow: 2px,2px;
   font-family:"Times New Roman", Times, serif;
   text-overflow: ellipsis;
-  color: aquamarine;
-  font-size: larger;
-
+  color:black;
+  font-weight: 100;
+  background-color: aliceblue;
+  font-size:xx-large;
+  display: flex;
+  justify-content: center;
+  border: medium solid red;
+  border-width:1ch;
+  border-radius: 2%;
 
 }
+
