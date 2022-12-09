@@ -11,10 +11,16 @@ let num1, num2, a, b;
 let cost, cost1;
 let count = 0;
 let flag = false;
+let cleanw = false;
 function setup() {
   let canvas = createCanvas(1000, 700);
   canvas.parent("canvasContainer")
   fish2 = new Anotherfish(width / 2, height);
+  for (var i = 0; i < 7; i++) {
+    bbb = new Bottle(random(width), 205);
+    bottles2.push(bbb);
+  }
+
   for (var i = 0; i < 10; i++) {
     yarray[i] = 0;
   }
@@ -37,19 +43,19 @@ function draw() {
   background(num1, num2, 255);
   num1 = map(cloud1.x, 120, width, 168, 10);
   num2 = map(cloud2.x, 120, width, 219, 100);
-  count = 1;
+
   push();
   cloud1.display();
   cloud1.move();
   cloud2.display();
   cloud2.move();
-  if(cloud1.x>width+140){
-    cloud1.xspd=cloud1.xspd*(-1)
+  if (cloud1.x > width + 140 || cloud1.x < -10) {
+    cloud1.xspd = cloud1.xspd * -1;
   }
-  if(cloud2.x>width+200){
-    cloud2.xspd=cloud2.xspd*(-1)
+  if (cloud2.x > width + 200 || cloud2.x < -10) {
+    cloud2.xspd = cloud2.xspd * -1;
   }
-  
+
   if (num1 <= 100 && num2 <= 150) {
     star2.display();
     star1.display();
@@ -65,12 +71,18 @@ function draw() {
   if (bf.x > width - 100 || bf.x < width / 2) {
     bf.speed = bf.speed * -1;
   }
-  if (bf.x > width / 2 && bf.x > width / 2 + 200) {
+
+  if (bf.x > width / 2-100 && bf.x > width / 2 + 100) {
     textSize(22);
     strokeWeight(2);
     textStyle(BOLD);
     stroke(112, 20, 30);
-    text("SAVE THE SEA", bf.x - 50, bf.y + 50);
+    if (cleanw == false) {
+      text("SAVE THE SEA", bf.x - 50, bf.y + 50);
+    }
+    if (cleanw == true) {
+     text("TAKE CARE OF IT", bf.x - 50, bf.y + 50); 
+    }
   }
 
   pop();
@@ -411,12 +423,12 @@ class Anotherfish {
     if (keyIsPressed) {
       if (this.eat == false) {
         if (key == "a" || key == "A") {
-          if (this.x > 0 && this.x < width) {
+          if (this.x > -10) {
             this.movel();
           }
         }
         if (key == "d" || key == "D") {
-          if (this.x > 0 && this.x < width) {
+          if (this.x < width + 10) {
             push();
 
             this.mover();
@@ -439,12 +451,12 @@ class Anotherfish {
 
       if (this.eat == true) {
         if (key == "a" || key == "A") {
-          if (this.x > 0 && this.x < width) {
+          if (this.x > -10) {
             this.mover();
           }
         }
         if (key == "d" || key == "D") {
-          if (this.x > 0 && this.x < width) {
+          if (this.x < width + 10) {
             push();
 
             this.movel();
@@ -752,10 +764,6 @@ function mousePressed() {
   console.log(0.5 * sin(boat.a));
 }
 
-function checker() {
-  console.log(mouseX - width / 2, mouseY - height / 2);
-}
-
 class Bubble {
   constructor(x, y, spd) {
     this.x = x;
@@ -813,7 +821,6 @@ function fffishes() {
       fishs[i].x = width + 10;
     } else if (fishs[i].lifespan <= 0) {
       fishs.splice(i, 1);
-   
     }
   }
   //小鱼吃瓶子
@@ -835,24 +842,22 @@ function fffishes() {
 function bbbottles() {
   //掉落瓶子
   if (bottles2.length >= 0 && flag == false) {
-    if (frameCount % 60 == 0) {
+    if (frameCount % 300 == 0) {
       let bo = new Bottle(random(width), 205);
       bottles2.push(bo);
-      count = bottles.length;
-      console.log("in");
     }
   }
-  if(count==bottles2.lenth){
-    flag=true
+  if (bottles2.length == 0) {
+    flag = true;
+    cleanw = true;
   }
-  
-  
+
   for (var i = 0; i < bottles2.length; i++) {
     bottles2[i].display();
     bottles2[i].move();
     bottles2[i].remain();
-    if (bottles2[i].catch == true&&boat.len==0) {
-      bottles2.splice(i,1)
+    if (bottles2[i].catch == true && boat.len == 0) {
+      bottles2.splice(i, 1);
     }
   }
   //迷晕
@@ -970,19 +975,15 @@ function ttturtles() {
     turtles[i].display();
     if (turtles[i].chil == false) {
       turtles[i].movel();
-      // console.log('你他奶奶的怎么也报错啊')
     }
 
     if (turtles[i].chil == true) {
       turtles[i].mover();
-      // console.log('给爷run啊啊啊啊')
     }
     if (turtles[i].dier()) {
       turtles.splice(i, 1);
-      // console.log('我真的服了你能不能别报错啊啊啊啊')
     } else if (turtles[i].diel()) {
       turtles.splice(i, 1);
-      // console.log('我真的服了你能不能别报错靠靠靠')
     }
   }
 }

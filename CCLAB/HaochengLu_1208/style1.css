@@ -4,8 +4,8 @@ html{
 }
 
 body{
-background-image: url('asssets/saveoceans-pollution.gif');
-
+background-image: url('asssets/saveoceans-pollution.gif') ;
+background-size: cover;
 
 }
 
@@ -14,13 +14,16 @@ canvas {
 }
 
 #link{
-  position: absolute;
-  left: 50%;
-  bottom: 0px;
+  position: relative;
+  left: 43%;
+  margin: 50px;
+  width: 300px;
+  /* background-color: #db0909; */
+  /* bottom: 0px; */
 }
 
 h1{
-  position: relative;
+  
   top: 5px;
   display: flex;
   justify-content: center;
@@ -28,7 +31,7 @@ h1{
   font-size: 2cm;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-style: oblique;
-  text-shadow: 0 0 5px #FF0000, 0 0 5px #f403c0; ;
+  text-shadow: 0 0 5px #ea0606, 0 0 5px #2716bd; ;
 
 
 
@@ -49,7 +52,7 @@ h1{
 .plastic3{
   padding-top: 20ch;
   width:100%;
-  height:400px;
+  height:450px;
   display: flex;
 
 }
@@ -58,82 +61,125 @@ h1{
 
 #refrences{
 
-  flex:right;
-  background-color: rgb(149, 208, 164);
-  color: rgb(29, 28, 28);
-font-size: 30px;
-width:900px;
+flex:right;
+background-color: #a2e4f5;
+color: rgb(29, 28, 28);
+font-size: 25px;
+width:600px;
 text-align: center;
-margin-left: 40px;
+margin-left: 160px;
 padding:10px;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-border-radius: 8%;
+border-radius: 30px;
 border-style:solid;
 border-width:medium; 
-border-color: rgb(9, 93, 49);
+border-color: #09567A;
 border-width: 12px;
 }
 
 #pollusion1{
-  left: 1.5cm;
-  width: 15cm;
+  border-radius: 30px;
+  border-style:solid;
+  border-width:medium;
+  border-color: #09567A;
+  border-width: 12px;
+  margin-left: 40px;
+  left: 600px;
+  width: 600px;
   flex:left;
+  margin-left: 40px;
 }
 
 #pollusion2{
-  left: 1.5cm;
-  width:15cm;
+  border-radius: 30px;
+  border-style:solid;
+  border-width:medium;
+  border-color: #09567A;
+  border-width: 12px;
+  margin-left: 40px;
+  left: 600px;
+  width:600px;
   flex:left
 }
 
 
-/* .tiledBackground {
-  background-image: url('asssets/saveoceans-pollution.gif');
-  background: size 15px;;
-  width: 30cm;
-  height: 300px; */
-  /* border: 2px solid;
-  color: pink; */
-/* }  */
+
 #refrences2{
 flex:right;
-background-color: rgb(149, 208, 164);
+padding-top: 70px;
+background-color: #a2e4f5;
 color: rgb(29, 28, 28);
-font-size: 30px;
-width:900px;
+font-size: 23px;
+width:600px;
 text-align: center;
-margin-left: 40px;
+margin-left: 160px;
+/* margin-right: 100px; */
 padding:10px;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-border-radius: 8%;
+border-radius: 30px;
 border-style:solid;
 border-width:medium; 
-border-color: rgb(9, 93, 49);
+border-color: #09567A;
 border-width: 12px;
 
 
 }
 
 #refrences3{
-  flex:right;
-background-color: rgb(149, 208, 164);
+flex:right;
+background-color: #a2e4f5;
+padding: 10px;
 color: rgb(29, 28, 28);
-font-size: 30px;
-width:900px;
+font-size: 25px;
+padding-top: 70px;
+width:600px;
 text-align: center;
-margin-left: 40px;
+margin-left: 160px;
 padding:10px;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-border-radius: 8%;
+border-radius: 30px;
 border-style:solid;
-border-width:medium; 
-border-color: rgb(9, 93, 49);
+/* border-width:medium;  */
+border-color: #09567A;
 border-width: 12px;
 }
 
 
 #pollusion3{
   left: 1.5cm;
-  width:15cm;
-  flex:left
+  width: 600px;;
+  flex:left;
+  margin-left: 40px;
+  border-radius: 30px;
+border-style:solid;
+border-color: #09567A;
+border-width: 12px;
+}
+
+#cit1{
+  position: absolute;
+  top: 400px;
+  right:100px;
+  text-shadow: 0 0 5px #aaa5c2, 0 0 5px #b14c4c; ;
+  font-size: 10px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#cit2{
+  position: absolute;
+  top: 890px;
+  right:100px;
+
+  text-shadow: 0 0 5px #93c535, 0 0 5px #db0909; ;
+  font-size: 10px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#cit3{
+  position: absolute;
+  top: 1525px;
+  right:100px;
+  text-shadow: 0 0 5px #93c535, 0 0 5px #974343; ;
+  font-size: 10px;
+  font-family: 'Times New Roman', Times, serif;
 }
