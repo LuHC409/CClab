@@ -1,0 +1,139 @@
+html{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+background-image: url('asssets/saveoceans-pollution.gif');
+
+
+}
+
+canvas {
+  display: block;
+}
+
+#link{
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+}
+
+h1{
+  position: relative;
+  top: 5px;
+  display: flex;
+  justify-content: center;
+  text-decoration: double;
+  font-size: 2cm;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-style: oblique;
+  text-shadow: 0 0 5px #FF0000, 0 0 5px #f403c0; ;
+
+
+
+}
+.plastic1{
+  top: 200px;
+  width:100%;
+  height: 250px;
+  display:flex;
+}
+.plastic2{
+  padding-top: 10ch;
+  width:100%;
+  height:400px;
+  display: flex;
+}
+
+.plastic3{
+  padding-top: 20ch;
+  width:100%;
+  height:400px;
+  display: flex;
+
+}
+
+
+
+#refrences{
+
+  flex:right;
+  background-color: rgb(149, 208, 164);
+  color: rgb(29, 28, 28);
+font-size: 30px;
+width:900px;
+text-align: center;
+margin-left: 40px;
+padding:10px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+border-radius: 8%;
+border-style:solid;
+border-width:medium; 
+border-color: rgb(9, 93, 49);
+border-width: 12px;
+}
+
+#pollusion1{
+  left: 1.5cm;
+  width: 15cm;
+  flex:left;
+}
+
+#pollusion2{
+  left: 1.5cm;
+  width:15cm;
+  flex:left
+}
+
+
+/* .tiledBackground {
+  background-image: url('asssets/saveoceans-pollution.gif');
+  background: size 15px;;
+  width: 30cm;
+  height: 300px; */
+  /* border: 2px solid;
+  color: pink; */
+/* }  */
+#refrences2{
+flex:right;
+background-color: rgb(149, 208, 164);
+color: rgb(29, 28, 28);
+font-size: 30px;
+width:900px;
+text-align: center;
+margin-left: 40px;
+padding:10px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+border-radius: 8%;
+border-style:solid;
+border-width:medium; 
+border-color: rgb(9, 93, 49);
+border-width: 12px;
+
+
+}
+
+#refrences3{
+  flex:right;
+background-color: rgb(149, 208, 164);
+color: rgb(29, 28, 28);
+font-size: 30px;
+width:900px;
+text-align: center;
+margin-left: 40px;
+padding:10px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+border-radius: 8%;
+border-style:solid;
+border-width:medium; 
+border-color: rgb(9, 93, 49);
+border-width: 12px;
+}
+
+
+#pollusion3{
+  left: 1.5cm;
+  width:15cm;
+  flex:left
+}

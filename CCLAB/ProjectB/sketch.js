@@ -8,9 +8,12 @@ xarray = [];
 let turtles = [];
 let cont = 50;
 let num1, num2, a, b;
-let cost,cost1;
+let cost, cost1;
+let count = 0;
+let flag = false;
 function setup() {
-  createCanvas(1000, 700);
+  let canvas = createCanvas(1000, 700);
+  canvas.parent("canvasContainer")
   fish2 = new Anotherfish(width / 2, height);
   for (var i = 0; i < 10; i++) {
     yarray[i] = 0;
@@ -24,24 +27,36 @@ function setup() {
   star3 = new Star(random(width), random(0, 150));
   star4 = new Star(random(width), random(0, 150));
   star5 = new Star(random(width), random(0, 150));
+  for (var i = 0; i <= 6; i++) {
+    let f = new Fish(width + 10, random(265, height));
+    fishs.push(f);
+  }
 }
 
 function draw() {
   background(num1, num2, 255);
-
   num1 = map(cloud1.x, 120, width, 168, 10);
   num2 = map(cloud2.x, 120, width, 219, 100);
- push()
+  count = 1;
+  push();
   cloud1.display();
   cloud1.move();
   cloud2.display();
   cloud2.move();
+  if(cloud1.x>width+140){
+    cloud1.xspd=cloud1.xspd*(-1)
+  }
+  if(cloud2.x>width+200){
+    cloud2.xspd=cloud2.xspd*(-1)
+  }
+  
   if (num1 <= 100 && num2 <= 150) {
     star2.display();
     star1.display();
     star3.display();
     star4.display();
-  }pop()
+  }
+  pop();
   // console.log(mouseX, mouseY)
 
   push();
@@ -90,45 +105,52 @@ function draw() {
   boat.display();
 
   boat.stop();
-push()
+  push();
   for (var i = bottles2.length - 1; i >= 0; i--) {
-    a = boat.x+(30 + boat.len) *2.7 *-sin(0.5 * sin(boat.a))+cost+cost1
-    b = boat.y + 30 + 1.03*(30 + boat.len) * cos(0.5 * sin(boat.a))-40+cost+cost1;
+    a = boat.x + (30 + boat.len) * 2.7 * -sin(0.5 * sin(boat.a)) + cost + cost1;
+    b =
+      boat.y +
+      30 +
+      1.03 * (30 + boat.len) * cos(0.5 * sin(boat.a)) -
+      40 +
+      cost +
+      cost1;
     // cost = sin(0.5 * sin(boat.a));
-     // console.log(sin(0.5 * sin(boat.a)))
-    cost1=-10
+    // console.log(sin(0.5 * sin(boat.a)))
+    cost1 = -10;
     if (sin(0.5 * sin(boat.a)) > 0) {
       cost = 7;
-      cost1=-14
+      cost1 = -14;
     }
     if (sin(0.5 * sin(boat.a)) < 0) {
       cost = -10;
     }
-    if(sin(0.45<=0.5 * sin(boat.a))<=0.47 ){
-      cost=25
-      cost1=-43
-      }
-    if(sin(0.45<=0.5 * sin(boat.a))<=0.2&&sin(0.45<=0.5 * sin(boat.a))<=0.47>=-0.2){
-      cost=-10
+    if (sin(0.45 <= 0.5 * sin(boat.a)) <= 0.47) {
+      cost = 25;
+      cost1 = -43;
     }
-    
-    
-    if(sin(0.5 * sin(boat.a))<=-0.37 ){
-      cost=-25
-      cost1=-10
+    if (
+      sin(0.45 <= 0.5 * sin(boat.a)) <= 0.2 &&
+      sin(0.45 <= 0.5 * sin(boat.a)) <= 0.47 >= -0.2
+    ) {
+      cost = -10;
+    }
+
+    if (sin(0.5 * sin(boat.a)) <= -0.37) {
+      cost = -25;
+      cost1 = -10;
       // console.log('in')
     }
-    
-   
-    
 
-    if (dist(bottles2[i].x, bottles2[i].y, a, b) < 50||bottles2[i].catch==true) {
+    if (
+      dist(bottles2[i].x, bottles2[i].y, a, b) < 50 ||
+      bottles2[i].catch == true
+    ) {
       bottles2[i].changeP(a, b);
-      bottles2[i].catch=true
-      
+      bottles2[i].catch = true;
     }
   }
-  pop()
+  pop();
 
   pop();
 
@@ -727,7 +749,7 @@ function mousePressed() {
   } else {
     boat.move = true;
   }
-  console.log((0.5 * sin(boat.a)))
+  console.log(0.5 * sin(boat.a));
 }
 
 function checker() {
@@ -775,10 +797,10 @@ function bbbubbles() {
 }
 
 function fffishes() {
-  if (fishs.length < 6) {
-    let f = new Fish(width + 10, random(260, height));
-    fishs.push(f);
-  }
+  // if (fishs.length < 6) {
+  //   let f = new Fish(width + 10, random(260, height));
+  //   fishs.push(f);
+  // }
   //小鱼
   for (var i = fishs.length - 1; i >= 0; i--) {
     fishs[i].display();
@@ -788,22 +810,20 @@ function fffishes() {
     }
 
     if (fishs[i].dieleft()) {
-      fishs.splice(i, 1);
+      fishs[i].x = width + 10;
     } else if (fishs[i].lifespan <= 0) {
       fishs.splice(i, 1);
-      // console.log('in')
-      // console.log('你怎么读一次以后就没法读了啊细狗')
+   
     }
   }
   //小鱼吃瓶子
   for (var i = 0; i < fishs.length; i++) {
     for (var j = bottles2.length - 1; j >= 0; j--) {
       if (
-        dist(
-          fishs[i].x,
-          fishs[i].y,
-          bottles2[j].x,
-          bottles2[j].y ) < 30 &&fishs[i].lifespan >= 0&& bottles2[j].catch == false) {
+        dist(fishs[i].x, fishs[i].y, bottles2[j].x, bottles2[j].y) < 30 &&
+        fishs[i].lifespan >= 0 &&
+        bottles2[j].catch == false
+      ) {
         bottles2.splice(j, 1);
         fishs[i].lifespan -= 50;
         fishs[i].ate = true;
@@ -814,17 +834,26 @@ function fffishes() {
 
 function bbbottles() {
   //掉落瓶子
-  if (bottles2.length < 12) {
+  if (bottles2.length >= 0 && flag == false) {
     if (frameCount % 60 == 0) {
       let bo = new Bottle(random(width), 205);
       bottles2.push(bo);
+      count = bottles.length;
+      console.log("in");
     }
   }
-
+  if(count==bottles2.lenth){
+    flag=true
+  }
+  
+  
   for (var i = 0; i < bottles2.length; i++) {
     bottles2[i].display();
     bottles2[i].move();
     bottles2[i].remain();
+    if (bottles2[i].catch == true&&boat.len==0) {
+      bottles2.splice(i,1)
+    }
   }
   //迷晕
   for (var i = bottles2.length - 1; i >= 0; i--) {
