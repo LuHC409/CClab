@@ -12,10 +12,11 @@ let cost, cost1;
 let count = 0;
 let flag = false;
 let cleanw = false;
+let siyu=0
 function setup() {
   let canvas = createCanvas(1000, 700);
   canvas.parent("canvasContainer")
-  fish2 = new Anotherfish(width / 2, height);
+  fish2 = new Anotherfish(width / 2, height-200);
   for (var i = 0; i < 7; i++) {
     bbb = new Bottle(random(width), 205);
     bottles2.push(bbb);
@@ -33,10 +34,10 @@ function setup() {
   star3 = new Star(random(width), random(0, 150));
   star4 = new Star(random(width), random(0, 150));
   star5 = new Star(random(width), random(0, 150));
-  for (var i = 0; i <= 6; i++) {
-    let f = new Fish(width + 10, random(265, height));
-    fishs.push(f);
-  }
+  // for (var i = 0; i <= 6; i++) {
+  //   let f = new Fish(width + 10, random(265, height));
+  //   fishs.push(f);
+  // }
 }
 
 function draw() {
@@ -119,43 +120,11 @@ function draw() {
   boat.stop();
   push();
   for (var i = bottles2.length - 1; i >= 0; i--) {
-    a = boat.x + (30 + boat.len) * 2.7 * -sin(0.5 * sin(boat.a)) + cost + cost1;
-    b =
-      boat.y +
-      30 +
-      1.03 * (30 + boat.len) * cos(0.5 * sin(boat.a)) -
-      40 +
-      cost +
-      cost1;
-    // cost = sin(0.5 * sin(boat.a));
-    // console.log(sin(0.5 * sin(boat.a)))
-    cost1 = -10;
-    if (sin(0.5 * sin(boat.a)) > 0) {
-      cost = 7;
-      cost1 = -14;
-    }
-    if (sin(0.5 * sin(boat.a)) < 0) {
-      cost = -10;
-    }
-    if (sin(0.45 <= 0.5 * sin(boat.a)) <= 0.47) {
-      cost = 25;
-      cost1 = -43;
-    }
-    if (
-      sin(0.45 <= 0.5 * sin(boat.a)) <= 0.2 &&
-      sin(0.45 <= 0.5 * sin(boat.a)) <= 0.47 >= -0.2
-    ) {
-      cost = -10;
-    }
-
-    if (sin(0.5 * sin(boat.a)) <= -0.37) {
-      cost = -25;
-      cost1 = -10;
-      // console.log('in')
-    }
+    a = boat.x - 5 + (45 + boat.len) * -sin(sin(boat.a));
+    b = boat.y + 30 + (45 + boat.len) * cos(sin(boat.a));
 
     if (
-      dist(bottles2[i].x, bottles2[i].y, a, b) < 50 ||
+      dist(bottles2[i].x, bottles2[i].y, a, b) < 40 ||
       bottles2[i].catch == true
     ) {
       bottles2[i].changeP(a, b);
@@ -190,9 +159,10 @@ function draw() {
   pop();
 
   //乌龟
+if(frameCount>300){
   push();
   ttturtles();
-  pop();
+  pop();}
 }
 
 class Cloud {
@@ -269,22 +239,17 @@ class BF {
     ellipseMode(CENTER);
     fill(255, 200, 0);
     ellipse(0, 0, this.size); //body
-    triangle(
-      0 + this.size / 3,
-      0,
-      this.size / 1.5,
-      this.size / 3,
-      this.size / 1.5,
-      0 - this.size / 3
-    );
-    // circle(
-    //   10 + this.size / 3,
+    // triangle(
+    //   0 + this.size / 3,
     //   0,
-    //   this.size / 1.5,)
-    // //   this.size / 3,
-    // //   this.size / 1.5,
-    // //   0 - this.size / 3
-    // // );
+    //   this.size / 1.5,
+    //   this.size / 3,
+    //   this.size / 1.5,
+    //   0 - this.size / 3
+    // );
+    ellipse(this.size/2,0,this.size/2,10)
+    
+    
     fill(255);
     ellipse(0 - this.size / 6, 0, this.size / 2, this.size / 2);
     fill(0);
@@ -408,8 +373,8 @@ class Anotherfish {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.xspd = 3;
-    this.yspd = 3;
+    this.xspd = 0.7;
+    this.yspd = 0.7;
     this.turn = false;
     this.eat = false;
     this.arc = 160;
@@ -437,7 +402,7 @@ class Anotherfish {
         }
 
         if (key == "S" || key == "s") {
-          if (this.y < height) {
+          if (this.y < height+20) {
             this.moved();
           }
         }
@@ -471,7 +436,8 @@ class Anotherfish {
         }
 
         if (key == "W" || key == "w") {
-          this.moved();
+          if(this.y<height+20){
+          this.moved();}
         }
       }
     }
@@ -605,10 +571,10 @@ class Boat {
   }
   stop() {
     if (this.move == false) {
-      if (this.len <= 300 && this.bianduan == false) {
+      if (this.len <= 400 && this.bianduan == false) {
         this.len += 3;
       }
-      if (this.len >= 299) {
+      if (this.len >= 399) {
         this.bianduan = true;
       }
       if (this.bianduan && this.len > 0) {
@@ -617,7 +583,7 @@ class Boat {
 
       push();
       translate(this.x, this.y + 30);
-      scale(1.2);
+      // scale(1.2);
       strokeWeight(6);
       this.a += 0;
       rotate(sin(this.a));
@@ -635,7 +601,7 @@ class Boat {
 
       push();
       translate(this.x, this.y + 30);
-      scale(1.2);
+      // scale(1.2);
       strokeWeight(6);
       rotate(sin(this.a));
       line(0, 0, 0, 30);
@@ -657,6 +623,7 @@ class Bottle {
     this.yspd = 1;
     this.rotspeed = 10;
     this.catch = false;
+
   }
   display() {
     fill(100, 60, 50);
@@ -760,8 +727,9 @@ function mousePressed() {
     boat.move = false;
   } else {
     boat.move = true;
+    boat.len = 0;
   }
-  console.log(0.5 * sin(boat.a));
+  // console.log(0.5 * sin(boat.a));
 }
 
 class Bubble {
@@ -805,11 +773,14 @@ function bbbubbles() {
 }
 
 function fffishes() {
-  // if (fishs.length < 6) {
-  //   let f = new Fish(width + 10, random(260, height));
-  //   fishs.push(f);
-  // }
+  
   //小鱼
+  if(frameCount%120==0&&frameCount<1200){
+    let f = new Fish(width + 10, random(265, height));
+    fishs.push(f);
+  }
+  
+  
   for (var i = fishs.length - 1; i >= 0; i--) {
     fishs[i].display();
     fishs[i].move();
@@ -823,6 +794,7 @@ function fffishes() {
       fishs.splice(i, 1);
     }
   }
+
   //小鱼吃瓶子
   for (var i = 0; i < fishs.length; i++) {
     for (var j = bottles2.length - 1; j >= 0; j--) {
@@ -966,9 +938,11 @@ function sssun() {
 }
 
 function ttturtles() {
+  if(frameCount%60==0){
   if (turtles.length <= 5) {
     let t = new Turtle(-10, random(300, height - 10));
     turtles.push(t);
+  }
   }
   for (var i = turtles.length - 1; i >= 1; i--) {
     // console.log(turtles[i]);
