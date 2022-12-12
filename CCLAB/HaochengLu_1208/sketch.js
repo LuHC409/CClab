@@ -13,6 +13,14 @@ let count = 0;
 let flag = false;
 let cleanw = false;
 let siyu=0
+let sstyle
+let tttime=0
+function preload(){
+  sstyle=loadFont("asssets/Lobster-Regular.ttf")
+
+}
+
+
 function setup() {
   let canvas = createCanvas(1000, 700);
   canvas.parent("canvasContainer")
@@ -41,6 +49,13 @@ function setup() {
 }
 
 function draw() {
+  if(frameCount>300&&bottles2.length!=0){
+    tttime+=(1/60)
+  }
+  
+
+  
+  
   background(num1, num2, 255);
   num1 = map(cloud1.x, 120, width, 168, 10);
   num2 = map(cloud2.x, 120, width, 219, 100);
@@ -73,21 +88,43 @@ function draw() {
     bf.speed = bf.speed * -1;
   }
 
-  if (bf.x > width / 2-100 && bf.x > width / 2 + 100) {
+  
     textSize(22);
     strokeWeight(2);
     textStyle(BOLD);
-    stroke(112, 20, 30);
+    
     if (cleanw == false) {
       text("SAVE THE SEA", bf.x - 50, bf.y + 50);
     }
+    if(cleanw==true&&fishs.length==0){
+       text("You Failed",bf.x - 50, bf.y + 50)
+       }
+  
+  
     if (cleanw == true) {
-     text("TAKE CARE OF IT", bf.x - 50, bf.y + 50); 
+     text("You are Environmentalists", bf.x - 50, bf.y + 50); 
+      text("You Have Used:"+int(tttime)+"s",bf.x - 50,bf.y+80)
     }
-  }
+  
 
   pop();
 
+  //废水海洋背景+随波漂流的牌子
+  push();
+  ocean();
+  ocean2();
+  pop();
+  if(frameCount<=60*5){
+    textFont(sstyle)
+    textSize(30)
+    text('Hook can only catch bottles',width/3,height/1.7)
+    text('Dead Fish can also eat bottles',width/3,height/1.6)
+    text('Try your Best To Save The Sea',width/3,height/1.5)
+  }
+
+
+  
+  if(frameCount>60*5){
   push();
   //大鱼变异
   if (fish2.y <= 267) {
@@ -100,11 +137,7 @@ function draw() {
     boat.move = true;
   }
 
-  //废水海洋背景+随波漂流的牌子
-  push();
-  ocean();
-  ocean2();
-  pop();
+  
 
   //瓶子坠落
   push();
@@ -139,6 +172,7 @@ function draw() {
   push();
   bbbubbles();
   pop();
+    
 
   //大鱼移动
 
@@ -148,21 +182,27 @@ function draw() {
   fish2.gundan();
   pop();
 
-  //太阳
-  push();
-  sssun();
-  pop();
+  }
 
   //小鱼
+  
+
+  //乌龟
+if(frameCount>300+300){
+  push();
+  ttturtles();
+  pop();
+  
   push();
   fffishes();
   pop();
-
-  //乌龟
-if(frameCount>300){
-  push();
-  ttturtles();
-  pop();}
+}
+  
+  
+//   if(frameCount>120&&fishs.length==0){
+// Endgame()
+// console.log('in')  
+//   }
 }
 
 class Cloud {
@@ -373,8 +413,8 @@ class Anotherfish {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.xspd = 0.7;
-    this.yspd = 0.7;
+    this.xspd = 3;
+    this.yspd = 3;
     this.turn = false;
     this.eat = false;
     this.arc = 160;
@@ -775,7 +815,7 @@ function bbbubbles() {
 function fffishes() {
   
   //小鱼
-  if(frameCount%120==0&&frameCount<1200){
+  if(frameCount%120==0&&frameCount<720+600&&frameCount>600){
     let f = new Fish(width + 10, random(265, height));
     fishs.push(f);
   }
@@ -921,21 +961,7 @@ function ocean2() {
   pop();
 }
 
-function sssun() {
-  push();
-  rotate(100 * sin(frameCount));
-  fill(139, 130, 120);
 
-  beginShape();
-  for (var i = 0; i < TWO_PI; i += 0.02) {
-    let r = 65 + random(5, -5);
-    let x = r * cos(i);
-    let y = r * sin(i);
-    vertex(x, y);
-  }
-  endShape(CLOSE);
-  pop();
-}
 
 function ttturtles() {
   if(frameCount%60==0){
