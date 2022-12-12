@@ -87,6 +87,7 @@ function draw() {
   if (bf.x > width - 100 || bf.x < width / 2) {
     bf.speed = bf.speed * -1;
   }
+  
 
   
     textSize(22);
@@ -117,9 +118,12 @@ function draw() {
   if(frameCount<=60*5){
     textFont(sstyle)
     textSize(30)
-    text('Hook can only catch bottles',width/3,height/1.7)
-    text('Dead Fish can also eat bottles',width/3,height/1.6)
-    text('Try your Best To Save The Sea',width/3,height/1.5)
+    text('Hook can only catch bottles',width/3,height/1.9)
+    text('Dead Fish can also eat bottles',width/3,height/1.9+50)
+    text('Try your Best To Save The Sea',width/3,height/1.9+100)
+    text('Click the Monitor to restart',width/3,height/1.9+150)
+    text("You can Restart in Game",width/3,height/1.9+200)
+    text('But not In life',width/3,height/1.9+250)
   }
 
 
@@ -260,7 +264,14 @@ class BF {
     this.y = y;
     this.speed = random(1, 3);
     this.size = 30;
+    this.dist=0
   }
+  checkMouse(){
+    this.dist= dist(this.x,this.y,mouseX,mouseY)
+      return this.dist<(this.size*1.8);
+  }
+
+
 
   swim() {
     this.x += this.speed;
@@ -769,7 +780,9 @@ function mousePressed() {
     boat.move = true;
     boat.len = 0;
   }
-  // console.log(0.5 * sin(boat.a));
+  if(bf.checkMouse()){
+    window.open("https://luhc409.github.io/CClab/CCLAB/HaochengLu_1208/index2","_self")
+  }
 }
 
 class Bubble {
